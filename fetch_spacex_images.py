@@ -30,7 +30,7 @@ if __name__ == '__main__':
                         default='latest')
     spacex_id_launch = parser.parse_args().spacex_id_launch
 
-    path = pathlib.Path('image')
+    path = pathlib.Path('images_spacex')
     path.mkdir(parents=True, exist_ok=True)
 
     fetch_spacex_images(spacex_id_launch, path)

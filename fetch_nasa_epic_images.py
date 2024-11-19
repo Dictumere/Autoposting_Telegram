@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import requests
 import pathlib
 import os
+import argparse
 
 
 def saving_img_epic(nasa_api_key, path, count_images):
@@ -35,7 +36,14 @@ if __name__ == '__main__':
     load_dotenv()
     nasa_api_key = os.environ['NASA_API_KEY']
 
-    path = pathlib.Path('image_nasa_epic')
+    path = pathlib.Path('images_nasa_epic')
     path.mkdir(parents=True, exist_ok=True)
 
-    saving_img_epic(nasa_api_key, path, 5)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('count_images',
+                        type=int,
+                        nargs='?',
+                        default='5')
+    count_images = parser.parse_args().count_images
+
+    saving_img_epic(nasa_api_key, path, count_images)

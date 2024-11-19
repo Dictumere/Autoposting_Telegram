@@ -1,15 +1,16 @@
 import requests
 import os
 import pathlib
+import argparse
 from dotenv import load_dotenv
 from auxiliary_functions import get_extension_file
 
 
-def saving_nasa_apod(nasa_api_key, path):
+def saving_nasa_apod(nasa_api_key, path, count_images):
     url = 'https://api.nasa.gov/planetary/apod'
     params = {
         'api_key': nasa_api_key,
-        'count': 30
+        'count': count_images
     }
     response = requests.get(url, params=params)
     response.raise_for_status()
@@ -33,7 +34,14 @@ if __name__ == '__main__':
     load_dotenv()
     nasa_api_key = os.environ['NASA_API_KEY']
 
-    path = pathlib.Path('image_nasa_apod')
+    path = pathlib.Path('images_nasa_apod')
     path.mkdir(parents=True, exist_ok=True)
 
-    saving_nasa_apod(nasa_api_key, path)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('count_images',
+                        type=int,
+                        nargs='?',
+                        default='30')
+    count_images = parser.parse_args().count_images
+
+    saving_nasa_apod(nasa_api_key, path, count_images)
