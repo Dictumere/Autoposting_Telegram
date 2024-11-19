@@ -8,4 +8,5 @@ telegram_access_token = os.environ['TELEGRAM_ACCESS_TOKEN']
 
 bot = telegram.Bot(token=telegram_access_token)
 
-bot.send_message(chat_id='@galaxy_nasa_bot', text="Извини, я тут пытаюсь с ботом в телеграм разобраться. (Пишет Бот)")
+bot.send_photo(chat_id='@galaxy_nasa_bot',
+                  photo=open('image_nasa_epic/nasa_epic_1.png', 'rb'))

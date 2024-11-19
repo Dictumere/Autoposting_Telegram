@@ -34,9 +34,8 @@ def saving_img_epic(nasa_api_key, path, count_images):
 if __name__ == '__main__':
     load_dotenv()
     nasa_api_key = os.environ['NASA_API_KEY']
-    spacex_id = os.environ['SPACEX_ID']
 
-    path = pathlib.Path('image')
+    path = pathlib.Path('image_nasa_epic')
     path.mkdir(parents=True, exist_ok=True)
 
     saving_img_epic(nasa_api_key, path, 5)
