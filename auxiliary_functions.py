@@ -29,5 +29,5 @@ def takeFiles(directory):
             shuffle(image_paths)
         return image_paths
 
-    except Exception:
+    except FileNotFoundError:
         return []
