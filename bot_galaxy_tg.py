@@ -3,14 +3,15 @@ import os
 import time
 import argparse
 from dotenv import load_dotenv
-from auxiliary_functions import takeFiles
+from auxiliary_functions import take_files
 
 
 def publish_img(telegram_access_token, tg_chat_id, path, hours=14800):
     bot = telegram.Bot(token=telegram_access_token)
-    ls_image_nasa_epic = takeFiles(path)
+    ls_image_nasa_epic = take_files(path)
     for img in ls_image_nasa_epic:
-        bot.send_photo(chat_id=tg_chat_id, photo=open(img, 'rb'))
+        with open(img, 'rb') as file:
+            bot.send_photo(chat_id=tg_chat_id, photo=file)
         time.sleep(int(hours) * 3600)
 
 

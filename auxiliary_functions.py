@@ -19,7 +19,7 @@ def download_img(url, path):
 
 
 try:
-    def takeFiles(directory):
+    def take_files(directory):
         filesindir = os.listdir(directory)
         image_paths = []
 
