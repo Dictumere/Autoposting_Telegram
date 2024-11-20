@@ -17,9 +17,9 @@ def save_nasa_apod_images(nasa_api_key, path, count_images):
     answer = response.json()
 
     img_urls = []
-    for item in answer:
-        if 'url' in item:
-            img_urls.append(item['url'])
+    for image_data in answer:
+        if 'url' in image_data:
+            img_urls.append(image_data['url'])
 
     for img_number, img_url in enumerate(img_urls):
         img_response = requests.get(img_url)
