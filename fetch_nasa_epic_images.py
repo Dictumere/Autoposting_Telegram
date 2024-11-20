@@ -6,7 +6,7 @@ import os
 import argparse
 
 
-def saving_img_epic(nasa_api_key, path, count_images):
+def save_nasa_epic_images(nasa_api_key, path, count_images):
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
     params = {
         'api_key': nasa_api_key
@@ -47,4 +47,4 @@ if __name__ == '__main__':
                         help='Количество фотографий для загрузки')
     count_images = parser.parse_args().count_images
 
-    saving_img_epic(nasa_api_key, path, count_images)
+    save_nasa_epic_images(nasa_api_key, path, count_images)

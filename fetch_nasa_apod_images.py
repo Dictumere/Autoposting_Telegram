@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from auxiliary_functions import get_extension_file
 
 
-def saving_nasa_apod(nasa_api_key, path, count_images):
+def save_nasa_apod_images(nasa_api_key, path, count_images):
     url = 'https://api.nasa.gov/planetary/apod'
     params = {
         'api_key': nasa_api_key,
@@ -45,4 +45,4 @@ if __name__ == '__main__':
                         help='Количество фотографий для загрузки')
     count_images = parser.parse_args().count_images
 
-    saving_nasa_apod(nasa_api_key, path, count_images)
+    save_nasa_apod_images(nasa_api_key, path, count_images)
