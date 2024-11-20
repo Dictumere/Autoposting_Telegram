@@ -37,11 +37,12 @@ if __name__ == '__main__':
     path = pathlib.Path('images_nasa_apod')
     path.mkdir(parents=True, exist_ok=True)
 
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description='Получает изображения или фотоснимки из Вселенной.')
     parser.add_argument('count_images',
                         type=int,
                         nargs='?',
-                        default='30')
+                        default='30',
+                        help='Количество фотографий для загрузки')
     count_images = parser.parse_args().count_images
 
     saving_nasa_apod(nasa_api_key, path, count_images)

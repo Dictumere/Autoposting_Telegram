@@ -20,11 +20,12 @@ if __name__ == '__main__':
     hours = os.environ['HOURS']
     tg_chat_id = os.environ['TG_CHAT_ID']
 
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description='Отправка изображений в Telegram-канал с заданным интервалом.')
     parser.add_argument('path_dir_images',
                         type=str,
                         nargs='?',
-                        default='images_nasa_epic')
+                        default='images_nasa_epic',
+                        help='Путь к директории с изображениями')
     path_dir_images = parser.parse_args().path_dir_images
 
     publish_img(telegram_access_token, tg_chat_id, path_dir_images, hours)

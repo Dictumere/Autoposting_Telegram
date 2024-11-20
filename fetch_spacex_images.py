@@ -23,11 +23,12 @@ def fetch_spacex_images(spacex_id_launch, path):
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description='Получает фотографии с запусков ракет SpaceX')
     parser.add_argument('spacex_id_launch',
                         type=str,
                         nargs='?',
-                        default='latest')
+                        default='latest',
+                        help='ID запуска ракеты')
     spacex_id_launch = parser.parse_args().spacex_id_launch
 
     path = pathlib.Path('images_spacex')

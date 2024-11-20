@@ -39,11 +39,12 @@ if __name__ == '__main__':
     path = pathlib.Path('images_nasa_epic')
     path.mkdir(parents=True, exist_ok=True)
 
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description='Получает визуализацию Земли')
     parser.add_argument('count_images',
                         type=int,
                         nargs='?',
-                        default='5')
+                        default='5',
+                        help='Количество фотографий для загрузки')
     count_images = parser.parse_args().count_images
 
     saving_img_epic(nasa_api_key, path, count_images)
