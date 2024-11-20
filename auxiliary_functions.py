@@ -18,8 +18,8 @@ def download_img(url, path):
         file.write(response.content)
 
 
-def takeFiles(directory):
-    try:
+try:
+    def takeFiles(directory):
         filesindir = os.listdir(directory)
         image_paths = []
 
@@ -28,6 +28,5 @@ def takeFiles(directory):
             image_paths.append(path)
             shuffle(image_paths)
         return image_paths
-
-    except FileNotFoundError:
-        return []
+except FileNotFoundError:
+    print('Файл не обнаружен')
