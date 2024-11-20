@@ -30,3 +30,15 @@ try:
         return image_paths
 except FileNotFoundError:
     print('Файл не обнаружен')
+
+
+def download_and_save_image(img_url, path, img_number, apy_key=None):
+    params = {
+        'api_key': apy_key
+    }
+    img_response = requests.get(img_url, params=params)
+    img_response.raise_for_status()
+
+    extension = get_extension_file(img_url)
+    with open(f'{path}/image_{img_number}{extension}', 'wb') as file:
+        file.write(img_response.content)

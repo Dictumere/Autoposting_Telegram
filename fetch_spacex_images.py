@@ -1,7 +1,7 @@
 import requests
 import pathlib
 import argparse
-from auxiliary_functions import get_extension_file
+from auxiliary_functions import download_and_save_image
 
 
 def fetch_spacex_images(spacex_id_launch, path):
@@ -14,15 +14,13 @@ def fetch_spacex_images(spacex_id_launch, path):
     list_img_spacex = answer['links']['flickr']['original']
 
     for img_number, img_url in enumerate(list_img_spacex):
-        img_response = requests.get(img_url)
-        img_response.raise_for_status()
-
-        extension = get_extension_file(img_url)
-        with open(f'{path}/spacex_{img_number}.{extension}', 'wb') as file:
-            file.write(img_response.content)
+        download_and_save_image(img_url, path, img_number)
 
 
 if __name__ == '__main__':
+    path = pathlib.Path('images_spacex')
+    path.mkdir(parents=True, exist_ok=True)
+
     parser = argparse.ArgumentParser(description='Получает фотографии с запусков ракет SpaceX')
     parser.add_argument('spacex_id_launch',
                         type=str,
@@ -30,8 +28,5 @@ if __name__ == '__main__':
                         default='latest',
                         help='ID запуска ракеты')
     spacex_id_launch = parser.parse_args().spacex_id_launch
-
-    path = pathlib.Path('images_spacex')
-    path.mkdir(parents=True, exist_ok=True)
 
     fetch_spacex_images(spacex_id_launch, path)

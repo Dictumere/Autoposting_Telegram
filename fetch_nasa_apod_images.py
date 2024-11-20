@@ -3,7 +3,7 @@ import os
 import pathlib
 import argparse
 from dotenv import load_dotenv
-from auxiliary_functions import get_extension_file
+from auxiliary_functions import download_and_save_image
 
 
 def save_nasa_apod_images(nasa_api_key, path, count_images):
@@ -22,12 +22,7 @@ def save_nasa_apod_images(nasa_api_key, path, count_images):
             img_urls.append(image_data['url'])
 
     for img_number, img_url in enumerate(img_urls):
-        img_response = requests.get(img_url)
-        img_response.raise_for_status()
-
-        extension = get_extension_file(img_url)
-        with open(f'{path}/nasa_apod_{img_number}.{extension}', 'wb') as file:
-            file.write(img_response.content)
+        download_and_save_image(img_url, path, img_number)
 
 
 if __name__ == '__main__':

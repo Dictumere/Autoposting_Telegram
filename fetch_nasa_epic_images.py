@@ -1,5 +1,6 @@
 from datetime import datetime
 from dotenv import load_dotenv
+from auxiliary_functions import download_and_save_image
 import requests
 import pathlib
 import os
@@ -15,7 +16,7 @@ def save_nasa_epic_images(nasa_api_key, path, count_images):
     response.raise_for_status()
     answer = response.json()
 
-    for index, record in enumerate(answer[:count_images]):
+    for img_number, record in enumerate(answer[:count_images]):
         img_key = record['image']
         img_data = record['date']
 
@@ -25,11 +26,7 @@ def save_nasa_epic_images(nasa_api_key, path, count_images):
         day = img_data.day
 
         img_url = f'https://api.nasa.gov/EPIC/archive/natural/{year}/{month}/{day}/png/{img_key}.png'
-        img_response = requests.get(img_url, params=params)
-        img_response.raise_for_status()
-
-        with open(f'{path}/nasa_epic_{index+1}.png', 'wb') as file:
-            file.write(img_response.content)
+        download_and_save_image(img_url, path, img_number, nasa_api_key)
 
 
 if __name__ == '__main__':
