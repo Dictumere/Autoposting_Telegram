@@ -11,9 +11,9 @@ def fetch_spacex_images(spacex_id_launch, path):
     response.raise_for_status()
     answer = response.json()
 
-    list_img_spacex = answer['links']['flickr']['original']
+    img_spacex = answer['links']['flickr']['original']
 
-    for img_number, img_url in enumerate(list_img_spacex):
+    for img_number, img_url in enumerate(img_spacex):
         download_and_save_image(img_url, path, img_number)
 
 
