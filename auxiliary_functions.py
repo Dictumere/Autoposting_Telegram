@@ -18,18 +18,15 @@ def download_img(url, path):
         file.write(response.content)
 
 
-try:
-    def take_files(directory):
-        filesindir = os.listdir(directory)
-        image_paths = []
+def take_files(directory):
+    filesindir = os.listdir(directory)
+    image_paths = []
 
-        for filesindirs in filesindir:
-            path = os.path.join(directory, filesindirs)
-            image_paths.append(path)
-            shuffle(image_paths)
-        return image_paths
-except FileNotFoundError:
-    print('Файл не обнаружен')
+    for filesindirs in filesindir:
+        path = os.path.join(directory, filesindirs)
+        image_paths.append(path)
+        shuffle(image_paths)
+    return image_paths
 
 
 def download_and_save_image(img_url, path, img_number, apy_key=None):
